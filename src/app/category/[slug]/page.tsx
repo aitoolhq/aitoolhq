@@ -1,6 +1,7 @@
 import { categories, getCategoryBySlug } from '@/data/categories';
 import { getToolsByCategory } from '@/data/tools';
 import { ToolCard } from '@/components/ToolCard';
+import { CategoryIcon } from '@/components/CategoryIcon';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -34,7 +35,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         {category.name}
       </div>
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-4xl">{category.emoji}</span>
+        <div
+          className="inline-flex items-center justify-center w-12 h-12 rounded-xl"
+          style={{ background: 'rgba(99, 102, 241, 0.12)' }}
+        >
+          <CategoryIcon name={category.icon} size={24} style={{ color: '#818cf8' }} />
+        </div>
         <h1 className="text-4xl font-bold" style={{ color: '#f1f0ff' }}>{category.name}</h1>
       </div>
       <p className="mb-10" style={{ color: '#8b8aa8' }}>{category.description} · {categoryTools.length} tools</p>

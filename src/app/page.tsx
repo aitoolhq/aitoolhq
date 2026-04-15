@@ -4,6 +4,7 @@ import { categories } from '@/data/categories';
 import { getRecentPosts } from '@/data/posts';
 import { ToolCard } from '@/components/ToolCard';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { CategoryIcon } from '@/components/CategoryIcon';
 
 export default function HomePage() {
   const featured = getFeaturedTools();
@@ -106,14 +107,19 @@ export default function HomePage() {
             <Link
               key={cat.slug}
               href={`/category/${cat.slug}`}
-              className="rounded-xl p-4 text-center category-card"
+              className="rounded-xl p-5 text-center category-card group"
               style={{
                 background: '#12121a',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 transition: 'all 0.2s',
               }}
             >
-              <div className="text-4xl mb-2">{cat.emoji}</div>
+              <div
+                className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3"
+                style={{ background: 'rgba(99, 102, 241, 0.12)' }}
+              >
+                <CategoryIcon name={cat.icon} size={22} style={{ color: '#818cf8' }} />
+              </div>
               <div className="font-semibold text-sm" style={{ color: '#d4d3f0' }}>
                 {cat.name}
               </div>
