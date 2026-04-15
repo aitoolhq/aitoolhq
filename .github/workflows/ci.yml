@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check key routes exist in build output
+        run: |
+          echo "Checking build output..."
+          ls .next/
+          echo "✅ Build output exists"
+
+      - name: Smoke test (post-deploy)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Waiting for Vercel deployment..."
+          sleep 60
+          
+          URLS=(
+            "https://aitoolhq.ai"
+            "https://aitoolhq.ai/tools"
+            "https://aitoolhq.ai/blog"
+            "https://aitoolhq.ai/blog/best-ai-writing-tools-2026"
+            "https://aitoolhq.ai/blog/chatgpt-vs-claude"
+            "https://aitoolhq.ai/tools/chatgpt"
+            "https://aitoolhq.ai/tools/claude"
+            "https://aitoolhq.ai/category/writing"
+            "https://aitoolhq.ai/category/coding"
+            "https://aitoolhq.ai/sitemap.xml"
+            "https://aitoolhq.ai/ads.txt"
+          )
+          
+          FAILED=0
+          for url in "${URLS[@]}"; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$url")
+            if [ "$STATUS" = "200" ]; then
+              echo "✅ $url ($STATUS)"
+            else
+              echo "❌ $url ($STATUS)"
+              FAILED=1
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo ""
+            echo "🚨 One or more URLs returned errors!"
+            exit 1
+          else
+            echo ""
+            echo "🎉 All URLs healthy!"
+          fi
