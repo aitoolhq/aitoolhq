@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getFeaturedTools, tools } from '@/data/tools';
 import { categories } from '@/data/categories';
+import { getRecentPosts } from '@/data/posts';
 import { ToolCard } from '@/components/ToolCard';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
 
@@ -60,6 +61,27 @@ export default function HomePage() {
               View All {tools.length} Tools
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Recent Blog Posts */}
+      <section className="max-w-4xl mx-auto px-4 py-16">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold">Latest from the Blog</h2>
+          <Link href="/blog" className="text-indigo-600 font-medium hover:underline text-sm">View all →</Link>
+        </div>
+        <div className="space-y-6">
+          {getRecentPosts(3).map(post => (
+            <article key={post.slug} className="border-b border-gray-100 pb-6">
+              <div className="flex items-center gap-2 text-xs text-gray-400 mb-1">
+                <span>{post.category}</span><span>·</span><span>{post.readTime} min read</span>
+              </div>
+              <Link href={`/blog/${post.slug}`}>
+                <h3 className="text-xl font-bold text-gray-900 hover:text-indigo-600 transition mb-1">{post.title}</h3>
+              </Link>
+              <p className="text-gray-500 text-sm">{post.excerpt}</p>
+            </article>
+          ))}
         </div>
       </section>
 
