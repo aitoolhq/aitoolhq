@@ -5,21 +5,25 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'All AI Tools — AI Tool Scout',
+  title: 'All AI Tools — AI Tool HQ',
   description: 'Browse all AI tools in our directory. Filter by category, pricing, and use case.',
 };
 
 export default function ToolsPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-2">All AI Tools</h1>
-      <p className="text-gray-500 mb-8">{tools.length} tools and counting</p>
+      <h1 className="text-4xl font-bold mb-2" style={{ color: '#f1f0ff' }}>All AI Tools</h1>
+      <p className="mb-8" style={{ color: '#8b8aa8' }}>{tools.length} tools and counting</p>
 
       {/* Category Filter */}
       <div className="flex flex-wrap gap-2 mb-10">
         <Link
           href="/tools"
-          className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium"
+          className="px-4 py-2 rounded-full text-sm font-medium transition-opacity hover:opacity-90"
+          style={{
+            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            color: '#fff',
+          }}
         >
           All
         </Link>
@@ -27,7 +31,11 @@ export default function ToolsPage() {
           <Link
             key={cat.slug}
             href={`/category/${cat.slug}`}
-            className="px-4 py-2 rounded-full border border-gray-300 text-sm font-medium text-gray-600 hover:border-indigo-400 hover:text-indigo-600 transition"
+            className="px-4 py-2 rounded-full text-sm font-medium transition-colors hover:text-indigo-400"
+            style={{
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: '#8b8aa8',
+            }}
           >
             {cat.emoji} {cat.name}
           </Link>

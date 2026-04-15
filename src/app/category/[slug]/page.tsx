@@ -28,14 +28,16 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-12">
-      <div className="mb-2 text-sm text-gray-500">
-        <Link href="/tools" className="hover:text-indigo-600">All Tools</Link> → {category.name}
+      <div className="mb-4 text-sm" style={{ color: '#8b8aa8' }}>
+        <Link href="/tools" className="hover:text-indigo-400 transition-colors">All Tools</Link>
+        <span className="mx-1">→</span>
+        {category.name}
       </div>
       <div className="flex items-center gap-3 mb-2">
         <span className="text-4xl">{category.emoji}</span>
-        <h1 className="text-4xl font-bold">{category.name}</h1>
+        <h1 className="text-4xl font-bold" style={{ color: '#f1f0ff' }}>{category.name}</h1>
       </div>
-      <p className="text-gray-500 mb-10">{category.description} · {categoryTools.length} tools</p>
+      <p className="mb-10" style={{ color: '#8b8aa8' }}>{category.description} · {categoryTools.length} tools</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {categoryTools.map(tool => (
