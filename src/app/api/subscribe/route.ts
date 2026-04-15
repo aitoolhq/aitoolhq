@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
+        email_address: email,
         tags: ['aitoolhq'],
       }),
     });
