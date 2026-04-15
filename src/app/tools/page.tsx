@@ -1,6 +1,7 @@
 import { tools } from '@/data/tools';
 import { categories } from '@/data/categories';
 import { ToolCard } from '@/components/ToolCard';
+import { CategoryIcon } from '@/components/CategoryIcon';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -31,13 +32,14 @@ export default function ToolsPage() {
           <Link
             key={cat.slug}
             href={`/category/${cat.slug}`}
-            className="px-4 py-2 rounded-full text-sm font-medium transition-colors hover:text-indigo-400"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors hover:text-indigo-400"
             style={{
               border: '1px solid rgba(255,255,255,0.1)',
               color: '#8b8aa8',
             }}
           >
-            {cat.emoji} {cat.name}
+            <CategoryIcon name={cat.icon} size={14} />
+            {cat.name}
           </Link>
         ))}
       </div>
