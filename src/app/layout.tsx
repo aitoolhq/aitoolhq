@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   verification: {
     google: 'pub-9866006683837670',
+    other: {
+      'impact-site-verification': '2ed8900e-ee4d-4184-bdfb-a9a1fd2e7abf',
+    },
   },
   title: 'AI Tool HQ — Your Headquarters for AI Tools',
   description: 'Discover and compare the best AI tools across writing, image generation, coding, video, productivity, and more. Curated and updated weekly.',
