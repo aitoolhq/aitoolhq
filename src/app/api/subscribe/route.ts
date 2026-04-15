@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     const data = await response.json();
 
     // Already subscribed is fine
-    if (data.email?.[0]?.includes('already')) {
+    if (data.code === 'email_already_exists') {
       return NextResponse.json({ success: true, alreadySubscribed: true });
     }
 
