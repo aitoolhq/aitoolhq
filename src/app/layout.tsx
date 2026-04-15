@@ -7,6 +7,9 @@ import { Footer } from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  verification: {
+    google: 'pub-9866006683837670',
+  },
   title: 'AI Tool HQ — Your Headquarters for AI Tools',
   description: 'Discover and compare the best AI tools across writing, image generation, coding, video, productivity, and more. Curated and updated weekly.',
   keywords: 'AI tools, artificial intelligence, best AI tools, AI directory, ChatGPT alternatives, AI software',
@@ -26,6 +29,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9866006683837670"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={inter.className}>
         <Navbar />
         {children}
