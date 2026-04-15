@@ -9,20 +9,22 @@ export async function generateStaticParams() {
   return categories.map(c => ({ slug: c.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const cat = getCategoryBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const cat = getCategoryBySlug(slug);
   if (!cat) return {};
   return {
-    title: `Best ${cat.name} AI Tools — AI Tool Scout`,
+    title: `Best ${cat.name} AI Tools — AI Tool HQ`,
     description: cat.description,
   };
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = getCategoryBySlug(params.slug);
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const categoryTools = getToolsByCategory(params.slug);
+  const categoryTools = getToolsByCategory(slug);
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-12">
