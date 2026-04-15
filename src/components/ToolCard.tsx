@@ -1,46 +1,116 @@
+'use client';
+
 import Link from 'next/link';
 import { Tool } from '@/data/tools';
 
-const pricingColors = {
-  free: 'bg-green-100 text-green-700',
-  freemium: 'bg-blue-100 text-blue-700',
-  paid: 'bg-orange-100 text-orange-700',
-};
-
-const pricingLabels = {
-  free: 'Free',
-  freemium: 'Freemium',
-  paid: 'Paid',
+const pricingStyles = {
+  free: { background: 'rgba(34, 197, 94, 0.12)', color: '#86efac', label: 'Free' },
+  freemium: { background: 'rgba(99, 102, 241, 0.12)', color: '#a5b4fc', label: 'Freemium' },
+  paid: { background: 'rgba(249, 115, 22, 0.12)', color: '#fdba74', label: 'Paid' },
 };
 
 export function ToolCard({ tool }: { tool: Tool }) {
+  const pricing = pricingStyles[tool.pricing];
+
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md hover:border-indigo-300 transition flex flex-col">
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h3 className="font-bold text-lg text-gray-900">{tool.name}</h3>
-          <p className="text-indigo-600 text-sm font-medium">{tool.tagline}</p>
+    <div
+      className="rounded-xl flex flex-col transition-all duration-200 group relative overflow-hidden"
+      style={{
+        background: '#12121a',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget;
+        el.style.borderColor = 'rgba(99, 102, 241, 0.45)';
+        el.style.boxShadow = '0 0 24px rgba(99, 102, 241, 0.12)';
+        el.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        el.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+        el.style.boxShadow = 'none';
+        el.style.transform = 'translateY(0)';
+      }}
+    >
+      {/* Top gradient line */}
+      <div
+        className="h-px w-full"
+        style={{ background: 'linear-gradient(90deg, #6366f1, #8b5cf6)' }}
+      />
+
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1 pr-2">
+            <h3 className="font-bold text-base" style={{ color: '#f1f0ff' }}>
+              {tool.name}
+            </h3>
+            <p className="text-sm font-medium mt-0.5" style={{ color: '#818cf8' }}>
+              {tool.tagline}
+            </p>
+          </div>
+          <span
+            className="text-xs font-semibold px-2.5 py-1 rounded-full shrink-0"
+            style={pricing}
+          >
+            {pricing.label}
+          </span>
         </div>
-        <span className={`text-xs font-semibold px-2 py-1 rounded-full ${pricingColors[tool.pricing]}`}>
-          {pricingLabels[tool.pricing]}
-        </span>
-      </div>
-      <p className="text-gray-600 text-sm flex-1 mb-4">{tool.description}</p>
-      <div className="flex gap-2 mt-auto">
-        <Link
-          href={`/tools/${tool.slug}`}
-          className="flex-1 text-center border border-indigo-600 text-indigo-600 text-sm font-medium py-2 rounded-lg hover:bg-indigo-50 transition"
-        >
-          Learn More
-        </Link>
-        <a
-          href={tool.affiliateUrl || tool.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 text-center bg-indigo-600 text-white text-sm font-medium py-2 rounded-lg hover:bg-indigo-700 transition"
-        >
-          Visit Site →
-        </a>
+
+        <p className="text-sm flex-1 mb-4 leading-relaxed" style={{ color: '#8b8aa8' }}>
+          {tool.description}
+        </p>
+
+        {tool.category && (
+          <div className="mb-4">
+            <span
+              className="text-xs font-medium px-2 py-0.5 rounded-full"
+              style={{
+                background: 'rgba(129, 140, 248, 0.1)',
+                color: '#a5b4fc',
+                border: '1px solid rgba(129, 140, 248, 0.2)',
+              }}
+            >
+              {tool.category}
+            </span>
+          </div>
+        )}
+
+        <div className="flex gap-2 mt-auto">
+          <Link
+            href={`/tools/${tool.slug}`}
+            className="flex-1 text-center text-sm font-medium py-2 rounded-lg transition-colors"
+            style={{
+              border: '1px solid rgba(99, 102, 241, 0.4)',
+              color: '#818cf8',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(99, 102, 241, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+            }}
+          >
+            Learn More
+          </Link>
+          <a
+            href={tool.affiliateUrl || tool.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-center text-sm font-medium py-2 rounded-lg transition-all"
+            style={{
+              background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              color: '#fff',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 0 16px rgba(99, 102, 241, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            Visit Site →
+          </a>
+        </div>
       </div>
     </div>
   );

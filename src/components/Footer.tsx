@@ -1,40 +1,74 @@
 import Link from 'next/link';
 
+const footerLinks = {
+  Categories: [
+    { href: '/category/writing', label: 'Writing' },
+    { href: '/category/image', label: 'Image' },
+    { href: '/category/coding', label: 'Coding' },
+    { href: '/category/video', label: 'Video' },
+  ],
+  More: [
+    { href: '/tools', label: 'All Tools' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/newsletter', label: 'Newsletter' },
+  ],
+  Legal: [
+    { href: '/about', label: 'About' },
+    { href: '/privacy', label: 'Privacy' },
+    { href: '/affiliate-disclosure', label: 'Affiliate Disclosure' },
+  ],
+};
+
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 mt-16">
-      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-gray-600">
+    <footer
+      style={{
+        background: '#0a0a0f',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
         <div>
-          <div className="font-bold text-gray-900 mb-3">🤖 AI Tool HQ</div>
-          <p className="text-gray-500">Your headquarters for the best AI tools.</p>
+          <div className="flex items-center gap-1.5 font-bold mb-3" style={{ color: '#f1f0ff' }}>
+            <span>⚡</span>
+            <span>
+              AI Tool <span style={{ color: '#818cf8' }}>HQ</span>
+            </span>
+          </div>
+          <p style={{ color: '#8b8aa8' }}>
+            Your headquarters for the best AI tools. Curated, not cluttered.
+          </p>
         </div>
-        <div>
-          <div className="font-semibold text-gray-800 mb-3">Categories</div>
-          <ul className="space-y-1">
-            <li><Link href="/category/writing" className="hover:text-indigo-600">Writing</Link></li>
-            <li><Link href="/category/image" className="hover:text-indigo-600">Image</Link></li>
-            <li><Link href="/category/coding" className="hover:text-indigo-600">Coding</Link></li>
-            <li><Link href="/category/video" className="hover:text-indigo-600">Video</Link></li>
-          </ul>
-        </div>
-        <div>
-          <div className="font-semibold text-gray-800 mb-3">More</div>
-          <ul className="space-y-1">
-            <li><Link href="/tools" className="hover:text-indigo-600">All Tools</Link></li>
-            <li><Link href="/blog" className="hover:text-indigo-600">Blog</Link></li>
-            <li><Link href="/newsletter" className="hover:text-indigo-600">Newsletter</Link></li>
-          </ul>
-        </div>
-        <div>
-          <div className="font-semibold text-gray-800 mb-3">Legal</div>
-          <ul className="space-y-1">
-            <li><Link href="/about" className="hover:text-indigo-600">About</Link></li>
-            <li><Link href="/privacy" className="hover:text-indigo-600">Privacy</Link></li>
-            <li><Link href="/affiliate-disclosure" className="hover:text-indigo-600">Affiliate Disclosure</Link></li>
-          </ul>
-        </div>
+
+        {Object.entries(footerLinks).map(([section, links]) => (
+          <div key={section}>
+            <div className="font-semibold mb-3" style={{ color: '#d4d3f0' }}>
+              {section}
+            </div>
+            <ul className="space-y-2">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-indigo-400"
+                    style={{ color: '#8b8aa8' }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-      <div className="text-center text-xs text-gray-400 pb-6">
+
+      <div
+        className="text-center text-xs py-5"
+        style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+          color: '#8b8aa8',
+        }}
+      >
         © {new Date().getFullYear()} AI Tool HQ. Some links are affiliate links.
       </div>
     </footer>
