@@ -175,7 +175,7 @@ export const tools: Tool[] = [
     tags: ['audio', 'voice', 'tts', 'podcast'],
     pricing: 'freemium',
     url: 'https://elevenlabs.io',
-    affiliateUrl: 'https://elevenlabs.io?via=aitoolscout',
+    affiliateUrl: 'https://try.elevenlabs.io/fsnvphh844bb',
   },
   {
     slug: 'descript',
