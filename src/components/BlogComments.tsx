@@ -9,9 +9,9 @@ export function BlogComments() {
     script.async = true;
     script.crossOrigin = 'anonymous';
     script.setAttribute('data-repo', 'aitoolhq/aitoolhq');
-    script.setAttribute('data-repo-id', 'R_kgDOL8-9ZQ');
-    script.setAttribute('data-category', 'Blog Comments');
-    script.setAttribute('data-category-id', 'DIC_kwDOL8-9Zc4Cd7H8');
+    script.setAttribute('data-repo-id', 'R_kgDOL8-9ZQ'); // aitoolhq/aitoolhq
+    script.setAttribute('data-category', 'AIToolHQ Blog Posts');
+    script.setAttribute('data-category-id', 'DIC_kwDOL8-9Zc4Cd7Iq');
     script.setAttribute('data-mapping', 'pathname');
     script.setAttribute('data-strict', '0');
     script.setAttribute('data-reactions-enabled', '1');
