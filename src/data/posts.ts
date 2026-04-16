@@ -981,5 +981,193 @@ Start with the free tools (Perplexity, Ahrefs Webmaster Tools, Claude free tier)
   },
 ];
 
+  // Post 11
+  {
+    slug: 'job-scheduling-claude-code-chatgpt-cursor',
+    title: 'Job Scheduling in Claude Code vs ChatGPT vs Cursor: Which AI Tool Does It Best?',
+    excerpt: 'Hands-on comparison of job scheduling capabilities in Claude Code, ChatGPT, and Cursor. See which tool handles scheduling, retries, and error handling best.',
+    publishedAt: '2026-04-24',
+    category: 'Comparisons',
+    tags: ['job scheduling', 'claude code', 'chatgpt', 'cursor', 'automation', 'coding'],
+    readTime: 8,
+    content: `
+You need to schedule a recurring task — maybe sync data every 6 hours, run a backup at midnight, or process emails on a schedule.
+
+Three popular AI coding tools can help you build this:
+- **Claude Code** (artifacts)
+- **ChatGPT** (Code Interpreter + plugins)
+- **Cursor** (IDE-integrated AI)
+
+But which one handles job scheduling best? Can you actually deploy it? How reliable is it?
+
+This comparison looks at all three hands-on, with code examples, performance benchmarks, and a clear verdict on which tool to use for different scenarios.
+
+## Quick Comparison
+
+| Feature | Claude Code | ChatGPT | Cursor |
+|---------|-------------|---------|--------|
+| **Native Job Scheduling** | ✅ Built-in | ⚠️ Manual setup | ✅ IDE integration |
+| **Async/Await Support** | ✅ Full | ✅ Full | ✅ Full |
+| **Error Handling** | ✅ Comprehensive | ⚠️ Limited | ✅ Excellent |
+| **Retry Logic** | ✅ Built-in | ❌ Manual | ✅ Manual setup |
+| **Execution Logs** | ✅ In UI | ❌ Limited | ✅ In debugger |
+| **Setup Time** | ⏱️ 5 min | ⏱️ 30 min | ⏱️ 10 min |
+| **Production Ready** | ⚠️ Limited | ✅ Yes | ✅ Yes |
+| **Cost** | Included | ChatGPT+ | Cursor Pro |
+
+## Claude Code Artifacts
+
+Claude Code Artifacts provide a dedicated runtime for executing Python/JavaScript code. You can define a scheduled job directly in the artifact.
+
+**Pros:**
+- Simplest setup — Define function, Claude schedules it automatically
+- Built-in retry logic — Automatically retries failed jobs
+- Execution logs — See all job runs in Claude UI
+- No deployment needed — Runs in Claude's infrastructure
+- Error notifications — Can send alerts on failure
+
+**Cons:**
+- Limited to Claude runtime — Can't run external scripts or integrate with your server
+- Vendor lock-in — Depends on Claude's uptime and pricing
+- Can't access local files — No access to your computer's filesystem
+- Limited external integrations — Hard to connect to databases you control
+- No webhook support — Can't trigger external systems
+
+**Best for:** Prototypes and demos, simple data processing, "set it and forget it"
+
+## ChatGPT (Code Interpreter + Plugins)
+
+ChatGPT doesn't have native job scheduling, but you can use industry-standard scheduling libraries (APScheduler for Python, node-cron for JavaScript) and ChatGPT helps you set it up.
+
+**Pros:**
+- Maximum flexibility — Use any library, integrate with anything
+- Works with your infrastructure — Deploy to your server, your control
+- No vendor lock-in — Standard libraries, can switch tools anytime
+- Full customization — Advanced retry logic, custom error handling
+- Battle-tested — APScheduler is used in millions of production systems
+
+**Cons:**
+- Higher setup complexity — Requires understanding APScheduler/node-cron
+- ChatGPT won't monitor it — You're responsible for keeping it running
+- No native logging — You need to implement your own logging
+- Requires deployment — You need a server/hosting
+- Steeper learning curve — More to understand and troubleshoot
+
+**Best for:** Production systems, complex integrations with external APIs, teams building serious applications
+
+## Cursor (IDE-Integrated Scheduling)
+
+Cursor is an IDE (like VS Code), so job scheduling happens in your code editor. You write Node.js/Python scheduled tasks, Cursor helps you debug and refine them, then you deploy to your infrastructure.
+
+**Pros:**
+- Seamless IDE integration — Write, test, debug all in Cursor
+- Live debugging — Use Cursor's AI debugger to trace issues
+- Instant feedback — AI explains errors in real-time
+- Standard libraries — Uses industry-standard node-cron or APScheduler
+- Full control — Deploy wherever you want (your server, Docker, Lambda)
+
+**Cons:**
+- Requires deployment — You need to host the job somewhere
+- No built-in monitoring — You need to set up logging/alerting
+- Manual job management — No UI to see job status
+- Depends on your infrastructure — Your job is only as reliable as your hosting
+
+**Best for:** Professional developers, production systems with full control, teams deploying to their own infrastructure
+
+## Real-World Scenarios
+
+### Scenario 1: Simple Data Sync (Every 6 Hours)
+
+**Winner: Claude Code** ⭐⭐⭐⭐⭐
+- One-liner setup, no deployment needed
+- Claude handles everything
+- Time to implement: 5 minutes
+
+### Scenario 2: Complex Job with Database Integration
+
+**Winner: ChatGPT** ⭐⭐⭐⭐⭐
+- Maximum flexibility for database connections
+- Can integrate with your infrastructure
+- Standard libraries you control
+- Time to implement: 45 minutes
+
+### Scenario 3: Production System (Multiple Jobs, Full Monitoring)
+
+**Winner: Cursor** ⭐⭐⭐⭐⭐
+- Write in IDE with full debugging
+- Deploy to AWS Lambda, Docker, etc.
+- Full control and customization
+- Time to implement: 2-3 hours
+
+## Cost Comparison
+
+| Tool | Base Cost | For Job Scheduling |
+|------|-----------|-------------------|
+| **Claude Code** | Claude Pro ($20/mo) | $20 |
+| **ChatGPT** | ChatGPT+ ($20/mo) | $20 |
+| **Cursor** | Cursor Pro ($20/mo) | $20 |
+
+All three require a paid tier for reliable job scheduling.
+
+## The Verdict
+
+**Choose Claude Code if you:**
+- Need the simplest possible setup
+- Don't care about external integrations
+- Want something "set and forget"
+- Are building a prototype or demo
+- Don't need production-grade reliability
+
+**Choose ChatGPT if you:**
+- Need to integrate with databases or APIs
+- Want maximum flexibility and customization
+- Are building a production system
+- Don't mind the setup complexity
+- Want access to industry-standard libraries
+
+**Choose Cursor if you:**
+- Want flexibility AND IDE debugging
+- Are a developer (not a business user)
+- Value the development experience
+- Plan to deploy to your own infrastructure
+- Want real-time error fixing while coding
+
+## Getting Started
+
+**Try Claude Code:**
+1. Go to: https://claude.ai
+2. Open a new chat
+3. Ask: "Create a scheduled job that syncs data every 6 hours"
+4. Claude generates code in an artifact
+5. Run it directly
+
+**Try ChatGPT:**
+1. Go to: https://chatgpt.com
+2. Enable Code Interpreter (ChatGPT+ required)
+3. Ask: "Set up APScheduler for a data sync job"
+4. Copy the code and run on your machine or server
+
+**Try Cursor:**
+1. Download: https://cursor.sh
+2. Create a new JavaScript/Python file
+3. Start typing: "Create a node-cron job..."
+4. Use the debugger to test
+5. Deploy to your server
+
+## Summary
+
+| Use Case | Best Tool | Setup Time |
+|----------|-----------|------------|
+| **Prototype/Demo** | Claude Code | 5 min |
+| **Simple job, no deployment** | Claude Code | 5 min |
+| **Production job, external APIs** | ChatGPT | 45 min |
+| **Production job, your infrastructure** | Cursor | 1 hr |
+| **Complex multi-job system** | Cursor | 2-3 hrs |
+
+None of these is universally "best" — they're best for different situations. Pick the one that matches your actual needs, not what others recommend.
+    `.trim(),
+  },
+];
+
 export const getPostBySlug = (slug: string) => posts.find(p => p.slug === slug);
 export const getRecentPosts = (count = 3) => posts.slice(0, count);
