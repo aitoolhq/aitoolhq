@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { BlogComments } from '@/components/BlogComments';
 
 export async function generateStaticParams() {
   return posts.map(p => ({ slug: p.slug }));
@@ -114,6 +115,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <h3 className="text-xl font-bold mb-2" style={{ color: '#f1f0ff' }}>Stay Ahead of AI</h3>
         <p className="text-sm mb-4" style={{ color: '#8b8aa8' }}>Weekly roundup of the best new AI tools. No spam, ever.</p>
         <NewsletterSignup />
+      </div>
+
+      {/* Comments Section */}
+      <div className="mt-12" style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '2rem' }}>
+        <h3 className="text-xl font-bold mb-6" style={{ color: '#f1f0ff' }}>Comments</h3>
+        <BlogComments />
       </div>
 
       {/* Back to blog */}
