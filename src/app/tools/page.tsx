@@ -2,6 +2,7 @@ import { tools } from '@/data/tools';
 import { categories } from '@/data/categories';
 import { ToolCard } from '@/components/ToolCard';
 import { CategoryIcon } from '@/components/CategoryIcon';
+import { NewsletterPromo } from '@/components/NewsletterPromo';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -48,6 +49,11 @@ export default function ToolsPage() {
         {tools.map(tool => (
           <ToolCard key={tool.slug} tool={tool} />
         ))}
+      </div>
+
+      {/* Newsletter CTA */}
+      <div className="mt-20">
+        <NewsletterPromo />
       </div>
     </main>
   );

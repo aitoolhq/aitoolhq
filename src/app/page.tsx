@@ -4,6 +4,7 @@ import { categories } from '@/data/categories';
 import { getRecentPosts } from '@/data/posts';
 import { ToolCard } from '@/components/ToolCard';
 import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { NewsletterPromo } from '@/components/NewsletterPromo';
 import { CategoryIcon } from '@/components/CategoryIcon';
 
 export default function HomePage() {
@@ -171,6 +172,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Promo */}
+      <NewsletterPromo />
 
       {/* Recent Blog Posts */}
       <section className="max-w-4xl mx-auto px-4 py-16">
