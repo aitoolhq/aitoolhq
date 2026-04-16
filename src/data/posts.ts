@@ -979,8 +979,6 @@ AI hasn\'t made SEO easier — it\'s raised the floor for everyone. The sites wi
 Start with the free tools (Perplexity, Ahrefs Webmaster Tools, Claude free tier). Once you\'re generating traffic, reinvest in Surfer SEO for optimization and Semrush for competitive intelligence.
     `.trim(),
   },
-];
-
   // Post 11
   {
     slug: 'job-scheduling-claude-code-chatgpt-cursor',
